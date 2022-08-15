@@ -56,11 +56,15 @@ Open the project folder and create a Python Virtual Environment (venv) at it's r
 ```
 python -m venv venv
 ```
+Activate the environment using:
+```
+source venv/Scripts/activate
+```
 
 Then, install the project and build dependencies
 ```
 pip install plotly
-pip install whell
+pip install wheel
 ```
 
 After making your changes, use the following to build the library:
