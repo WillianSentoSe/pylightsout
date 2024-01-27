@@ -1,7 +1,6 @@
 import plotly.graph_objects as go
-import math
 
-def plot_vertices(G, fig, nodesize=0.25, highlightmove=False):
+def plot_vertices(G, fig, nodesize=0.3, highlightmove=False):
 
     for v in G.V:
         on = G.C[v] == 1
@@ -9,8 +8,21 @@ def plot_vertices(G, fig, nodesize=0.25, highlightmove=False):
         highlighted = highlightmove and G.x == v
         x, y = G.coord[v]
 
+        fig.add_annotation(
+            go.layout.Annotation(
+                text=v,
+                x=x,
+                y=y,
+                showarrow=False,
+                font={
+                    "color": "black" if on else "white",
+                }
+            )
+        )
+
         fig.add_shape(
             type="circle",
+            name=v,
             xref="x", yref="y",
             x0=x - nodesize,
             y0=y - nodesize,
@@ -37,7 +49,7 @@ def plot_vertices(G, fig, nodesize=0.25, highlightmove=False):
             layer="below",
         )
 
-def plot_graph(G, padding=1, nodesize=0.25, highlightmove=False, size=(500, 500)):
+def plot_graph(G, padding=1, nodesize=0.25, highlightmove=False, size=(1200, 600), grid=True):
     width, height = size
     fig = go.Figure()
 
@@ -49,9 +61,10 @@ def plot_graph(G, padding=1, nodesize=0.25, highlightmove=False, size=(500, 500)
     fig.update_layout(
         width=width,
         height=height,
-        xaxis={ "visible": False },
-        yaxis={ "visible": False },
-        plot_bgcolor="White"
+        plot_bgcolor="white",
+        margin=dict(l=0, r=0, t=0, b=0),
+        xaxis=dict(visible=grid, showgrid=True, dtick=1, gridcolor="#F4F4F4", scaleanchor="y", scaleratio=1, range=[-6, 6], layer='below traces', zeroline=False),  # Ajusta a escala do eixo X
+        yaxis=dict(visible=grid, showgrid=True, dtick=1, gridcolor="#F4F4F4", scaleanchor="x", scaleratio=1, range=[-6, 6], layer='below traces', zeroline=False),  # Ajusta a escala do eixo Y
     )
 
     fig.show()

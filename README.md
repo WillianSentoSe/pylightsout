@@ -32,14 +32,32 @@ G.add_edge(v1, v2)
 G.plot()
 ```
 
-You can also use an brute force approach to get all possible solutions for the Lights Out problem.
+![All off graph](assets/plot_0.png)
+
+Press any vertice individually.
+```Python
+# Pressing a vertice and plotting the result
+G.press(v0)
+G.plot()
+```
+
+![Graph with 'v1' pressed](assets/plot_1.png)
+
+You can also use a brute force approach to get all possible solutions for the Lights Out problem.
 ```Python
 # Finding all the possible solutions for the graph
 S = G.solve(method='brute_force')
 
 # Printing the result
 print(S)
+
+# Plotting the solution
+G.plot(X=S[0])
 ```
+
+> [['v1']]
+
+![Graph solved](assets/plot_2.png)
 
 ## 3- Contributing to this library
 >⚠️ This part is opitional. You don't need this to use the library in your project!

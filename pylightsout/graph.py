@@ -1,6 +1,5 @@
-from plot import plot_graph
-import solver
-import copy
+from .plot import plot_graph
+from .solver import brute_force
 import random
 import math
 
@@ -69,14 +68,24 @@ class Graph:
         for n in self.N[v]:
             self.switch(n)
 
-    def plot(self):
-        plot_graph(self)
+    def plot(self, X=None, grid=True, size=(1200, 600)):
+        if (X != None):
+            self.reset()
+            for v in X:
+                self.press(v)
+
+        plot_graph(self, grid=grid, size=size)
 
     def solve(self, method="brute_force"):
+        S = None
+
         if (method == "brute_force"):
-            return solver.brute_force(self)
+            S = brute_force(self)
         else:
             raise Exception("Method not found")
+        
+        self.reset()
+        return S
 
 def from_adjdict(N, coord={}):
     V = list(N.keys())
