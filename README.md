@@ -72,7 +72,7 @@ Create any Caterpillar Graph using the number of legs of each vertice in the mai
 ```Python
 from pylightsout.graph.classes import Caterpillar
 
-G = Caterpillar([0, 1, 2, 1, 0])
+G = Caterpillar(legs_pattern=[0, 1, 2, 1, 0])
 G.plot()
 ```
 ![Caterpillar Graph](assets/plot_3.png)
