@@ -1,5 +1,5 @@
-from .plot import plot_graph
-from .solver import brute_force
+from ..plot import plot_graph
+from .solvers import BruteForceSolver
 import random
 import math
 
@@ -17,8 +17,9 @@ class Graph:
 
         self.reset()
 
-    def add_vertice(self, prefix="v", coord=(0, 0), N=[]):
-        v = prefix + str(self.n)
+    def add_vertice(self, prefix="v", coord=(0, 0), N=[], index=None):
+        index = index if index != None else len(list(filter(lambda _v : _v.startswith(prefix), self.V)))
+        v = prefix + str(index)
 
         self.V.append(v)
         self.n += 1
@@ -77,14 +78,16 @@ class Graph:
         plot_graph(self, grid=grid, size=size)
 
     def solve(self, method="brute_force"):
-        S = None
+        solver = None
 
         if (method == "brute_force"):
-            S = brute_force(self)
+            solver = BruteForceSolver(self)
         else:
             raise Exception("Method not found")
         
+        S = solver.solve()
         self.reset()
+
         return S
 
 def from_adjdict(N, coord={}):

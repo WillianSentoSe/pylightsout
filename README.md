@@ -5,7 +5,7 @@ A Python library for the Lights Out problem
 Download the `.whl` in your project and use:
 
 ```
-pip install lightsout-0.1.0-py3-none-any.whl
+pip install pylightsout-X.Y.Z-py3-none-any.whl
 ```
 
 > ⚠️ Note that the filename might be different

@@ -49,7 +49,7 @@ def plot_vertices(G, fig, nodesize=0.3, highlightmove=False):
             layer="below",
         )
 
-def plot_graph(G, padding=1, nodesize=0.25, highlightmove=False, size=(1200, 600), grid=True):
+def plot_graph(G, padding=1, nodesize=0.333, highlightmove=False, size=(1200, 600), grid=True):
     width, height = size
     fig = go.Figure()
 
