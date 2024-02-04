@@ -8,8 +8,6 @@ Download the `.whl` in your project and use:
 pip install pylightsout-X.Y.Z-py3-none-any.whl
 ```
 
-> ⚠️ Note that the filename might be different
-
 ## 2- Basic usage
 After installed, you can create and plot a simple graph using the following:
 
@@ -59,34 +57,56 @@ G.plot(X=S[0])
 
 ![Graph solved](assets/plot_2.png)
 
-## 3- Contributing to this library
->⚠️ This part is opitional. You don't need this to use the library in your project!
+## 3- Working with graph classes
+
+### Caterpillar Graph
+
+Create any Caterpillar Graph using the number of legs of each vertice in the main path (spine).
+
+| Property | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| legs_pattern | List of integers | True | Determines the shape of the graph. Each element represents the number of legs of a vertice of the spine. |
+| spine_prefix | String | False | Determines the name prefix of the vertices in the spine. |
+| legs_prefix | String | False | Determines the name prefix of the legs vertices. |
+
+```Python
+from pylightsout.graph.classes import Caterpillar
+
+G = Caterpillar([0, 1, 2, 1, 0])
+G.plot()
+```
+![Caterpillar Graph](assets/plot_3.png)
+
+## 4- Contributing to this library (optional)
 
 If you want to contribute to this library, you can clone this repository and build it as you like.
 
 First, clone this repository using:
-```
+```bash
 git clone https://github.com/WillianSentoSe/pylightsout
 ```
 
 Open the project folder and create a Python Virtual Environment (venv) at it's root:
 
-```
+```bash
 python -m venv venv
 ```
 Activate the environment using:
-```
+
+```bash
 source venv/Scripts/activate
 ```
 
 Then, install the project and build dependencies
-```
+
+```bash
 pip install plotly
 pip install wheel
 ```
 
 After making your changes, use the following to build the library:
-```
+
+```bash
 python setup.py bdist_wheel
 ```
 

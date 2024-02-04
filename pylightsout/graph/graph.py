@@ -89,6 +89,35 @@ class Graph:
         self.reset()
 
         return S
+    
+    def vertices_with_degree(self, degree):
+        """ Returns all vertices with given degree. """
+        return list(filter(lambda v: len(self.N[v]) == degree, self.V))
+    
+    def vertices_with_degree_not(self, degree):
+        """ Returns all vertices with degree different from given value. """
+        return list(filter(lambda v: len(self.N[v]) != degree, self.V))
+    
+    def copy(self):
+        """ Returns a copy of the graph. """
+        return Graph(V=self.V.copy(), E=self.E.copy(), N=self.N.copy(), coord=self.coord.copy())
+    
+    def subgraph(self, v_filter):
+        """ Filters the vertices and returns the resulting subgraph. """
+
+        if v_filter == None:
+            raise "The vertex filter function should be informed"
+        
+        V = list(filter(v_filter, self.V))
+        E = list(filter(lambda edge: v_filter(edge[0]) and v_filter(edge[1]), self.E))
+        N = {}
+        coord = {}
+
+        for v in V:
+            N[v] = list(filter(v_filter, self.N[v]))
+            coord[v] = self.coord[v]
+
+        return Graph(V=V, E=E, N=N, coord=coord)
 
 def from_adjdict(N, coord={}):
     V = list(N.keys())
